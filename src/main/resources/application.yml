@@ -1,0 +1,13 @@
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path: /api-docs
+server:
+  contextPath: /helloword
+  port: 8080
+spring:
+  jackson:
+    date-format: io.swagger.RFC3339DateFormat
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false

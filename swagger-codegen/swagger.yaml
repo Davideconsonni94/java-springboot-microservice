@@ -1,0 +1,95 @@
+swagger: "2.0"
+info:
+  description: "This is a sample microservice server. You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/)."
+  version: "1.0.0"
+  title: "Swagger Micorservice Template"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost"
+basePath: "/template"
+tags:
+- name: "HelloWorld"
+  description: "My HelloWorld server api"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+schemes:
+- "http"
+paths:
+  /helloworld:
+    get:
+      tags:
+      - "HelloWorld"
+      summary: "Get HelloWorld."
+      description: "Get simple Hello World greeting."
+      operationId: "getHelloWorld"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Hello World Message"
+          schema:
+            $ref: "#/definitions/HelloWorld"
+    post:
+      tags:
+      - "HelloWorld"
+      summary: "Get HelloWorld for my friends."
+      description: "Get simple Hello World greeting with your name for your friends."
+      operationId: "getHelloWorldForMyFriends"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "HelloWorld request"
+        required: true
+        schema:
+          $ref: "#/definitions/HelloWorldRequest"
+      responses:
+        200:
+          description: "Hello World Message"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/HelloWorld"
+  /helloworld/{name}:
+    get:
+      tags:
+      - "HelloWorld"
+      summary: "Get HelloWorld form me."
+      description: "Get simple Hello World greeting with your name."
+      operationId: "getHelloWorldWithName"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "name"
+        in: "path"
+        description: "Enter your name"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Hello World Message"
+          schema:
+            $ref: "#/definitions/HelloWorld"
+definitions:
+  HelloWorld:
+    type: "object"
+    properties:
+      message:
+        type: "string"
+  HelloWorldRequest:
+    type: "object"
+    properties:
+      myName:
+        type: "string"
+      friends:
+        type: "array"
+        items:
+          type: "string"
